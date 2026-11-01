@@ -12,9 +12,13 @@ set -euo pipefail
 src="$(cd "$(dirname "$0")/.." && pwd)/plugins/dev-team"
 target="${1:-}"
 with_agents=false
-[[ "${2:-}" == "--with-agents" ]] && with_agents=true
+case "${2:-}" in
+  "") ;;
+  --with-agents) with_agents=true ;;
+  *) target="" ;;  # 不明なオプションは使い方を表示して終了する
+esac
 
-if [[ -z "$target" || ! -d "$target" ]]; then
+if [[ -z "$target" || ! -d "$target" || $# -gt 2 ]]; then
   echo "使い方: $0 <対象リポジトリのパス> [--with-agents]" >&2
   exit 1
 fi
@@ -22,7 +26,7 @@ target="$(cd "$target" && pwd)"
 
 copy_if_absent() {
   local from="$1" to="$2"
-  if [[ -e "$to" ]]; then
+  if [[ -e "$to" || -L "$to" ]]; then
     echo "スキップ（既存）: ${to#"$target"/}"
   else
     mkdir -p "$(dirname "$to")"

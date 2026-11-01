@@ -80,6 +80,7 @@ user-level/CLAUDE.md                   ~/.claude/CLAUDE.md
 cloud/setup-script.sh                  クラウド環境の Setup script
 scripts/install.sh                     ファイルコピー型の導入スクリプト
 scripts/package-plugin.sh              claude.ai アップロード用 zip の作成
+scripts/sync-skill.sh                  templates/ を /dev-team:init の SKILL.md に埋め込む
 scripts/validate.sh                    整合性チェック（CI でも実行）
 ```
 

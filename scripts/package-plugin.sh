@@ -7,5 +7,5 @@ version=$(python3 -c 'import json;print(json.load(open("plugins/dev-team/.claude
 mkdir -p dist
 out="dist/dev-team-${version}.zip"
 rm -f "$out"
-(cd plugins && zip -qr "../$out" dev-team -x '*.DS_Store')
+(cd plugins/dev-team && zip -qr "../../$out" . -x '*.DS_Store')
 echo "作成しました: $out"
