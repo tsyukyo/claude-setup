@@ -74,7 +74,17 @@ PY
 if (( chars < 0 )); then err "project-instructions.md に text コードブロックがありません"
 elif (( chars > 16000 )); then err "プロジェクト指示が ${chars} 文字です（上限 16,000）"; fi
 
-# 8. シェルスクリプトの構文
+# 8. プラグインを変更したら version を上げているか（比較対象: origin/main。なければスキップ）
+base="${VALIDATE_BASE:-origin/main}"
+if git rev-parse -q --verify "$base" >/dev/null 2>&1 \
+   && git cat-file -e "$base:$plugin/.claude-plugin/plugin.json" 2>/dev/null \
+   && ! git diff --quiet "$base" -- "$plugin"; then
+  old=$(git show "$base:$plugin/.claude-plugin/plugin.json" | python3 -c 'import json,sys;print(json.load(sys.stdin)["version"])')
+  new=$(python3 -c 'import json,sys;print(json.load(open(sys.argv[1]))["version"])' "$plugin/.claude-plugin/plugin.json")
+  [[ "$old" != "$new" ]] || err "$plugin を変更していますが plugin.json の version が $base と同じ（$new）です"
+fi
+
+# 9. シェルスクリプトの構文
 for f in scripts/*.sh cloud/*.sh; do bash -n "$f" || err "$f に構文エラーがあります"; done
 
 if [[ $fail -eq 0 ]]; then echo "OK: すべてのチェックに合格しました（プロジェクト指示: ${chars} 文字）"; fi

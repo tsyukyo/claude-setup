@@ -18,7 +18,7 @@ Claude Code Projects の **Project settings → Memory → Project instructions*
 - 各リポジトリの CLAUDE.md に従う。CLAUDE.md がないリポジトリでは、最初に /dev-team:init の実行を提案する。
 - リポジトリ検索とテスト実行は Haiku のサブエージェント（dev-team:search / dev-team:grep / dev-team:audit）に委任し、スレッドのコンテキストを小さく保つ。プラグインが使えない場合は Explore などを model: haiku で代用する。
 - 重大な判断（スキーマ、認証・認可、課金、公開 API、データ削除、セキュリティ設定）は dev-team:advisor（Opus）に相談し、PR 前にサインオフを得る。
-- 長いタスクでは、区切りごとに作業ブランチへコミットして push する（サンドボックス再開時に未コミット変更が失われるため）。
+- 長いタスクでは、区切りごとに作業ブランチへコミットして push してよい（サンドボックス再開時に未コミット変更が失われるため）。PR を作成するのは dev-team:audit が PASS した後にする。
 
 # 完了の条件
 - 作業ブランチにコミットしたうえで dev-team:audit を実行し、PASS を得る。

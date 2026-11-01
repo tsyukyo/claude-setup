@@ -15,11 +15,13 @@ Claude Code Projects（claude.ai/code・デスクトップアプリの Code タ�
 | 手元の `~/.claude/CLAUDE.md` | 読み込まれない | クラウド環境の Setup script で書き出す（`cloud/setup-script.sh`） |
 | claude.ai の個人設定・コネクタ | 使われる | `claude-ai/personal-preferences.md` を貼り付け |
 
+> **注意: Projects ではリポジトリの deny ルールが効きません。** `.env` の読み取り禁止や強制 push の禁止は、プロジェクト指示の文言と auto mode・スレッド内の承認だけが頼りです。秘密情報はリポジトリに置かず、クラウド環境のネットワークシークレットに置いてください。
+
 ## 一度だけ行う準備
 
 1. **プラン**: Pro / Max / Ultra で、サイドバーに **Projects**（または **More** の中）が表示されていること。
 2. **GitHub**: 対象リポジトリに Claude GitHub App をインストールし、接続した GitHub アカウントに push 権限があること（`/web-setup` のトークンだけでは不足）。
-3. **プラグインのマーケットプレイス登録**: claude.ai の **Customize → Plugins → Add** から GitHub リポジトリ `tsyukyo/claude-setup` をマーケットプレイスとして追加し、`dev-team` をインストールする。リポジトリが非公開で追加できない場合は、`bash scripts/package-plugin.sh` で作った zip を **Add → Upload plugin** でアップロードする。
+3. **プラグインのマーケットプレイス登録**: claude.ai の **Customize → Plugins → Add** から GitHub リポジトリ `tsyukyo/claude-setup` をマーケットプレイスとして追加し、`dev-team` をインストールする。リポジトリが非公開で追加できない場合は、`bash scripts/package-plugin.sh` で作った zip を **Add → Upload plugin** でアップロードする（zip は自動更新されないので、プラグインの version を上げるたびに再アップロードする）。
 4. **claude.ai 個人設定**: `claude-ai/personal-preferences.md` のコードブロックを貼り付ける。
 5. **クラウド環境**: claude.ai/code の環境設定で自分専用の環境を作り、Setup script に `cloud/setup-script.sh` の中身を貼り付ける。必要なら許可ドメイン・ネットワークシークレットもここで設定する（秘密情報は環境変数ではなくネットワークシークレットに置く）。
 
@@ -68,4 +70,4 @@ Claude Code Projects（claude.ai/code・デスクトップアプリの Code タ�
 - スレッドの作業を修正させたら「この修正を覚えておいて」と伝える。プロジェクトメモリに保存され、以後のスレッドが最初から従う。
 - 必ず守らせたい運用ルール（同時スレッド数、PR を作るタイミングなど）は、会話で伝えるだけでなくプロジェクト指示に書く。会話での指示は「好み」として扱われ、強制ではない。
 - 小さな質問は「スレッドを立てずにここで答えて」と伝えると使用量を節約できる。
-- 使用量は Project settings → Usage でスレッド別・モデル別に確認できる。
+- 使用量は Project settings → Usage でスレッド別・モデル別に確認できる。最初のプロジェクトでは、ここで Haiku（search / grep / audit）と Opus（advisor）が実際に使われているかを一度確認する。
