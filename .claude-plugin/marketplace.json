@@ -1,0 +1,15 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "tsyukyo-tools",
+  "description": "個人開発用の Claude Code 構成（Sonnet 実装・Haiku 調査/監査・Opus 助言）",
+  "owner": {
+    "name": "tsyukyo"
+  },
+  "plugins": [
+    {
+      "name": "dev-team",
+      "source": "./plugins/dev-team",
+      "description": "Haiku の search / grep / audit と Opus の advisor サブエージェント、リポジトリ初期化スキル /dev-team:init"
+    }
+  ]
+}
