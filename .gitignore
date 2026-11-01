@@ -1,0 +1,7 @@
+# Claude Code のローカル専用設定と一時 worktree
+.claude/settings.local.json
+.claude/worktrees/
+
+# 秘密情報
+.env
+.env.*
