@@ -1,0 +1,10 @@
+{
+  "name": "dev-team",
+  "version": "1.0.0",
+  "description": "Sonnet が実装し、Haiku が並列で調査・監査し、Opus が重大判断とサインオフを担うためのサブエージェント一式と、リポジトリ初期化スキル",
+  "author": {
+    "name": "tsyukyo"
+  },
+  "repository": "https://github.com/tsyukyo/claude-setup",
+  "keywords": ["subagents", "workflow", "japanese"]
+}
