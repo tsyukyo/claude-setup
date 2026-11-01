@@ -28,7 +28,15 @@ Claude Code は使う場所によって読み込む設定が異なります。�
 [`projects/README.md`](projects/README.md) に、準備、New project ダイアログの各欄に書く内容、Project settings の推奨値、最初に送るメッセージまでをまとめています。要点は次のとおりです。
 
 1. claude.ai の **Customize → Plugins** でこのリポジトリをマーケットプレイスとして追加し、`dev-team` をインストールする
-2. New project を作成し、**Thread model を Sonnet 5.5** にする（既定は Opus）
+2. New project を作成し、4 つの基本設定を次のようにする（既定は「すべて Opus・high エフォート」で消費が最も大きい）
+
+   | 設定 | 推奨値 |
+   |---|---|
+   | 何に取り組みますか？ | 成果と完了条件を 1 行で（例: `kakeibo-web の MVP を 11 月末までに Workers へ公開する`） |
+   | コーディネーターモデル | Opus 5.5（エフォート欄があれば low） |
+   | スレッドモデル | Sonnet 5.5 |
+   | スレッドのエフォート | medium（バグ修正・既存コードの改修が中心なら high） |
+
 3. **Project instructions** に [`projects/project-instructions.md`](projects/project-instructions.md) を記入して貼り付ける
 4. **Plugins** に `dev-team` を追加する
 5. 最初のメッセージで `/dev-team:init` を実行させ、リポジトリに CLAUDE.md を導入する
